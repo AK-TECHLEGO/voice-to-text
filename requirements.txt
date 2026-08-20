@@ -1,0 +1,7 @@
+faster-whisper>=1.2
+sounddevice>=0.5
+numpy>=2.0
+pynput>=1.8
+pyperclip>=1.9
+pystray>=0.19
+pillow>=11.0

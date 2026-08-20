@@ -1,0 +1,31 @@
+# Recreated by install.bat - 312 MB of packages, never commit
+.venv/
+
+# Speech models, downloaded on first run - gigabytes
+models/
+
+# Per-machine settings: microphone index, chosen model, hotkey.
+# config.py holds the defaults, and the app writes this file on first run.
+config.json
+
+# Everything you have ever dictated. Personal, and it grows.
+transcripts.log
+
+# Single-instance lock
+.voiceflow.pid
+
+# Build output
+build/
+dist/
+*.spec
+VoiceFlow-setup.zip
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

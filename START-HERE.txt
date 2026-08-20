@@ -1,0 +1,72 @@
+VoiceFlow - speak, and your words get typed
+===========================================
+
+Hold a key, talk, let go. Whatever you said is typed into the window you
+were already using - your editor, WhatsApp, an email, anything.
+
+It runs entirely on your own computer. Your voice is never uploaded.
+
+
+SETTING IT UP  (once, about 5 minutes)
+--------------------------------------
+
+1. Unzip this folder somewhere permanent, such as C:\VoiceFlow.
+   Do not run it from inside the zip file.
+
+2. Double-click            install.bat
+
+   If you do not have Python, it opens the download page for you.
+   Install Python, TICK "Add python.exe to PATH" on the first screen,
+   then run install.bat again.
+
+   It then downloads about 800 MB. Leave the window open until it says
+   "Done".
+
+3. It puts a VoiceFlow shortcut on your Desktop.
+
+
+USING IT
+--------
+
+Start VoiceFlow from the Desktop shortcut.
+
+Wait for the message that says it is ready, then:
+
+    Hold CTRL + WINDOWS  ->  speak  ->  let go
+
+A small bar appears at the bottom of your screen while you talk. A second
+or two after you release the keys, your words are typed in.
+
+For something longer, so you do not have to hold keys down:
+
+    CTRL + WINDOWS + SPACE  ->  let go of everything  ->  talk  ->  tap SPACE
+
+Tapping SPACE ends it. That keypress is swallowed, so it does not put a
+stray space into what you are writing.
+
+Leave it running in the background. It sits in the system tray, next to
+the clock.
+
+
+IF SOMETHING IS WRONG
+---------------------
+
+Nothing happens when I press the keys
+    Open a command window in this folder and run:   run.bat --debug-keys
+    Press the key you want to use. It prints a name. Put that name into
+    config.json next to "hotkey", then restart VoiceFlow.
+
+It types the same sentence two or three times
+    You have more than one copy running. Run:   run.bat --stop
+    then start it once from the Desktop shortcut.
+
+It hears nothing
+    Run:   run.bat --list-devices
+    Find your microphone in the list and put its number into config.json
+    next to "input_device".
+
+It gets words wrong
+    Open config.json and change "model" to "medium.en". It is slower but
+    more accurate. It downloads the first time you use it.
+
+Everything else is explained in README.md.
