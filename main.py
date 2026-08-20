@@ -34,6 +34,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--list-devices", action="store_true", help="list microphones and exit")
     p.add_argument("--debug-keys", action="store_true",
                    help="print the name of every key you press, to find a working hotkey")
+    p.add_argument("--compare", nargs="?", const="", metavar="WAV",
+                   help="record your voice once and transcribe it with every "
+                        "model, so you can see which is worth the wait")
     p.add_argument("--stop", action="store_true",
                    help="stop the copy of VoiceFlow that is already running")
     p.add_argument("--allow-multiple", action="store_true",
@@ -81,6 +84,10 @@ def main() -> int:
 
     cfg = config.load(args.config)
     apply_overrides(cfg, args)
+
+    if args.compare is not None:
+        from voiceflow.compare import run as compare_run
+        return compare_run(cfg, args.compare or None)
 
     if args.test is not None:
         return self_test(cfg, args.test)

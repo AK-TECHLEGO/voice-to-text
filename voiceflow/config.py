@@ -24,6 +24,9 @@ DEFAULTS: dict[str, Any] = {
     "cpu_threads": 0,
     "beam_size": 1,            # 1 = greedy = fastest. 5 = slower, slightly better.
     "vad_filter": True,        # drop silence before transcribing
+    # Quiet microphones transcribe badly. Scale the recording up before
+    # sending it to Whisper.
+    "normalize_audio": True,
     # Nudges spelling of names/jargon you use often, e.g.
     # "Transcript of a developer talking about Python, Supabase and Vercel."
     "initial_prompt": None,

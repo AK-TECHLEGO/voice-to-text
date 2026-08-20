@@ -10,6 +10,7 @@ from typing import Any
 import numpy as np
 
 from . import config
+from .audio import normalize
 
 # Whisper reliably invents these when fed silence or noise. Dropping a result
 # that consists of nothing else is the single biggest quality win for dictation.
@@ -64,6 +65,9 @@ class Transcriber:
     def transcribe(self, audio: np.ndarray) -> str:
         self.load()
         assert self._model is not None
+
+        if self.cfg.get("normalize_audio", True):
+            audio = normalize(audio)
 
         segments, _info = self._model.transcribe(
             audio,

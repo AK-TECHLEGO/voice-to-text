@@ -29,3 +29,6 @@ __pycache__/
 .idea/
 Thumbs.db
 desktop.ini
+
+# Voice samples recorded by --compare
+*.wav

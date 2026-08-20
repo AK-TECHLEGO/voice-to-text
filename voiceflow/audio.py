@@ -103,3 +103,21 @@ def list_devices() -> str:
         api = sd.query_hostapis(dev["hostapi"])["name"]
         lines.append(f"  [{idx:>2}] {dev['name']}  -  {api}{marker}")
     return "\n".join(lines)
+
+
+def normalize(audio: np.ndarray, target_peak: float = 0.85) -> np.ndarray:
+    """Bring quiet recordings up to a usable level.
+
+    Laptop array microphones often peak around 0.05, and Whisper transcribes
+    low-level audio noticeably worse. Scaling is capped so that a near-silent
+    recording is not amplified into pure noise.
+    """
+    if audio.size == 0:
+        return audio
+    peak = float(np.abs(audio).max())
+    if peak < 1e-4:
+        return audio
+    gain = min(target_peak / peak, 30.0)
+    if gain <= 1.0:
+        return audio
+    return np.clip(audio * gain, -1.0, 1.0).astype(np.float32)
